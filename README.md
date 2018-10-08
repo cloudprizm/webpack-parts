@@ -4,7 +4,7 @@ Type and null safe, composable, webpack config for typescript.
 ## Example
 #### Basic shape
 ```typescript
-  const makeConfig: ChainableConfigDefinition = 
+  const configFactory: ChainableConfigDefinition = 
     config =>
       reader.of({ ...config })
 
@@ -14,12 +14,14 @@ Type and null safe, composable, webpack config for typescript.
     dist: '...'
   }
 
-  const myConfig = makeConfig(myDefaults).run(myEnvironment)
+  const myConfig = 
+    configFactory(myDefaults)
+      .run(myEnvironment)
 ```
 
 #### More advance shape
 ```typescript
-const makeConfig: ChainableConfigDefinition = config =>
+const chainableDefaults: ChainableConfigDefinition = config =>
   reader
     .of({ ...config })
     .map(umdOutput)
@@ -33,6 +35,34 @@ const makeConfig: ChainableConfigDefinition = config =>
       withOutput.modify(output => ({ ...output, ...partialOutput }))))
     .ap(pluginsBundle.map(applyPluginAtTheEnd))
     .chain(graphqlRule)
+```
+
+#### Extending `UserConfig` with type interference
+```typescript
+interface MyCustomConfig extends UserConfig {
+  babelConfig: any
+  ssr: boolean
+}
+
+const configFactory: ChainableConfigDefinition = config => 
+  makeConfig<MyCustomConfig>(config)
+    .chain(chainableDefaults)
+
+const myConfig = 
+  configFactory(myDefaults)
+    .run(myEnvironment)
+```
+
+#### Asking for UserConfig when chaining
+```typescript
+const setDevTool: ConfigPart<DevTool> = asks(userConfig =>
+  isProduction(userConfig)
+    ? 'source-map'
+    : 'cheap-eval-source-map'
+)
+
+const configFactory = myConfig
+  .ap(setDevTool.map(withDevTool.set)) // read (ask) and write (lens)
 ```
 
 ## How to use it

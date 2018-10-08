@@ -1,10 +1,10 @@
 
 import { array } from 'fp-ts/lib/Array'
 import { Predicate } from 'fp-ts/lib/function'
-import { asks, Reader } from 'fp-ts/lib/Reader'
+import { reader, asks, Reader } from 'fp-ts/lib/Reader'
 import { fromTraversable, Lens } from 'monocle-ts'
 
-import { $PropertyType } from 'utility-types'
+import { $PropertyType, Assign } from 'utility-types'
 import { Configuration as WebpackConfig, Module, Plugin, Resolve, Rule, RuleSetRule } from 'webpack'
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 
@@ -32,8 +32,8 @@ export interface UserConfig {
 }
 
 export type Configuration = WebpackConfig & { devServer?: DevServerConfiguration }
-export type ConfigDefinition = Reader<Partial<UserConfig>, Configuration>
-export type ChainableConfigDefinition = (config: Configuration) => ConfigDefinition
+export type ConfigDefinition<K = UserConfig> = Reader<Partial<K>, Configuration>
+export type ChainableConfigDefinition<K = UserConfig> = (config: Configuration) => ConfigDefinition<K>
 export type ConfigPart<A> = Reader<Partial<UserConfig>, A>
 export type ChainableConfigPart = (config: Configuration) => ConfigDefinition
 
@@ -65,6 +65,8 @@ export const withPlugins = plugins
 export const withEntry = entry
 export const withOptimization = optimization
 export const withAlias = resolve.compose(alias)
+
+export const makeConfig = <K = UserConfig>(config: Configuration): ConfigDefinition<K> => reader.of({ ...config })
 
 // overridings
 export const withTarget = target
@@ -118,3 +120,5 @@ export const traverseModuleRules = withRules.composeTraversal(rulesTraversal)
 // type ConfigurationLens<A> = Lens<Configuration, A>
 // export const extendObject = <K extends object>(entity: K) => (lens: ConfigurationLens<K>) =>
 //   lens.modify(existing => ({ ...existing, ...entity }))
+
+export * from 'fp-ts/lib/Reader'
