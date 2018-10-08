@@ -115,10 +115,3 @@ export const ruleSetUse = Lens.fromProp<RuleSetRule, 'use'>('use')
 
 export const rulesTraversal = fromTraversable(array)<RuleSetRule>()
 export const traverseModuleRules = withRules.composeTraversal(rulesTraversal)
-
-// need to think about mappend / mempty to make genralization here -> check array/object from fp-ts
-// type ConfigurationLens<A> = Lens<Configuration, A>
-// export const extendObject = <K extends object>(entity: K) => (lens: ConfigurationLens<K>) =>
-//   lens.modify(existing => ({ ...existing, ...entity }))
-
-export * from 'fp-ts/lib/Reader'
