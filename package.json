@@ -3,19 +3,23 @@
   "version": "0.0.1",
   "description": "Type safe, composable webpack config",
   "main": "src/index.ts",
-  "repository": "https://github.com/hungry-consulting/webpack-parts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damianbaar/catch-the-sun/tree/master/packages/opensource/webpack-parts"
+  },
   "author": "Damian Baar <damian.baar@gmail.com>",
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@types/webpack": "^4.4.14",
+    "@types/webpack-dev-server": "^3.1.1",
     "fp-ts": "^1.9.0",
     "monocle-ts": "^1.2.0",
-    "utility-types": "^2.1.0",
-    "@types/webpack": "^4.4.14",
-    "@types/webpack-dev-server": "^3.1.1"
+    "utility-types": "^2.1.0"
   },
   "peerDependencies": {
     "webpack": "^4.0.0",
     "webpack-dev-server": "^3.0.0"
-  }
+  },
+  "homepage": "https://github.com/damianbaar/catch-the-sun/tree/master/packages/opensource/webpack-parts"
 }
