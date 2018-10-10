@@ -105,9 +105,11 @@ export { RuleSetRule, RuleSetLoader, Plugin, Module } from 'webpack'
 export type LoaderRule = ConfigPart<Rule>
 export type PluginsRule = ConfigPart<Plugin[]>
 
+// better would be to rename it to append
 export const applyRuleAtTheEnd = (rule: Rule) => withRules.modify(existing => [...existing, rule])
 export const applyRuleAtTheBeginning = (rule: Rule) => withRules.modify(existing => [rule, ...existing])
 
+// make plural form
 export const applyPluginAtTheEnd = (plugins: Plugin[]) => withPlugins.modify(existing => existing.concat(plugins))
 export const applyPluginAtTheBeginning = (plugins: Plugin[]) => withPlugins.modify(existing => plugins.concat(existing))
 
