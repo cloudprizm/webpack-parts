@@ -1,6 +1,6 @@
 {
   "name": "@hungry/webpack-parts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Type safe, composable webpack config",
   "main": "dist/index.js",
   "module": "src/index.ts",
@@ -28,9 +28,9 @@
     "utility-types": "^2.1.0"
   },
   "peerDependencies": {
-    "webpack": "^4.0.0",
     "@babel/cli": "^7.0.0",
     "@hungry/babel-preset-cli": "^0.0.1",
+    "webpack": "^4.0.0",
     "webpack-dev-server": "^3.0.0"
   },
   "homepage": "https://github.com/hungry-consulting/webpack-parts"
