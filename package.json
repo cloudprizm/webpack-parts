@@ -2,10 +2,20 @@
   "name": "@hungry/webpack-parts",
   "version": "0.0.1",
   "description": "Type safe, composable webpack config",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "babel": {
+    "presets": [
+      "@hungry/babel-preset-cli"
+    ]
+  },
+  "scripts": {
+    "build:babel": "babel src/** -d dist --extensions '.ts','.tsx'",
+    "prepublish": "yarn build:babel"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/damianbaar/catch-the-sun/tree/master/packages/opensource/webpack-parts"
+    "url": "https://github.com/hungry-consulting/webpack-parts"
   },
   "author": "Damian Baar <damian.baar@gmail.com>",
   "license": "MIT",
@@ -19,7 +29,9 @@
   },
   "peerDependencies": {
     "webpack": "^4.0.0",
+    "@babel/cli": "^7.0.0",
+    "@hungry/babel-preset-cli": "^0.0.1",
     "webpack-dev-server": "^3.0.0"
   },
-  "homepage": "https://github.com/damianbaar/catch-the-sun/tree/master/packages/opensource/webpack-parts"
+  "homepage": "https://github.com/hungry-consulting/webpack-parts"
 }
