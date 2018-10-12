@@ -4,7 +4,7 @@ import { Predicate } from 'fp-ts/lib/function'
 import { reader, asks, Reader } from 'fp-ts/lib/Reader'
 import { fromTraversable, Lens } from 'monocle-ts'
 
-import { $PropertyType, Assign } from 'utility-types'
+import { $PropertyType } from 'utility-types'
 import { Configuration as WebpackConfig, Module, Plugin, Resolve, Rule, RuleSetRule } from 'webpack'
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 
