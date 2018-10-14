@@ -68,6 +68,9 @@ const configFactory = myConfig
 ## How to use it
 It is used in conjunction with [`@hungry/webpack-parallel`](https://github.com/hungry-consulting/webpack-parallel) - dev friendly builder and watcher for webpack.
 
+### Working example
+You can find basic working example within [`webpack-parallel/tests`](https://github.com/hungry-consulting/webpack-parallel/blob/master/__tests__/fixtures/configs.ts).
+
 ## Motivation
 In world of monorepos, there could be a tons of different configurations - at some point I had low level of trust on existing solutions, and production grade configs were hard to track and understand at first sight, so I needed something more bulletproof, easy to change - something which would sound correct without too much details.
 For me it was hard to create n-variation to any occasions and be fluent with that since code was growing and I was afraid that at some point I will loose momentum, so general idea behind this is - allow to provide any change, however within context where it will be used rather than having it prepare somewhere, far away from context. This makes config more flexible and even providing any experimental configuration does not end up with total crash.
