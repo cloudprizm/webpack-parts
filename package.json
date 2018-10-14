@@ -1,6 +1,6 @@
 {
   "name": "@hungry/webpack-parts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Type safe, composable webpack config",
   "keywords": [
     "webpack",
