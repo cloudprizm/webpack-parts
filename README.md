@@ -44,7 +44,7 @@ interface MyCustomConfig extends UserConfig {
   ssr: boolean
 }
 
-const configFactory: ChainableConfigDefinition = config => 
+const configFactory: ChainableConfigDefinition<MyCustomConfig> = config => 
   makeConfig<MyCustomConfig>(config)
     .chain(chainableDefaults)
 
