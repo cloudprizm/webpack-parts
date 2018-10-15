@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@hungry/babel-preset-cli": "^0.0.2",
+    "@hungry/babel-preset-cli": "~0.0.3",
     "concurrently": "^4.0.1",
     "typescript": "^3.1.3"
   },
