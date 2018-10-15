@@ -1,6 +1,6 @@
 {
   "name": "@hungry/webpack-parts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Type safe, composable webpack config",
   "keywords": [
     "webpack",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@hungry/babel-preset-cli": "~0.0.3",
+    "@hungry/babel-preset-cli": "^0.0.4",
     "concurrently": "^4.0.1",
     "typescript": "^3.1.3"
   },
