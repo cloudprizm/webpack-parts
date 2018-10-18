@@ -37,23 +37,26 @@ export type ChainableConfigDefinition<K = UserConfig> = (config: Configuration) 
 export type ConfigPart<A> = Reader<Partial<UserConfig>, A>
 export type ChainableConfigPart = (config: Configuration) => ConfigDefinition
 
-export const module = Lens.fromNullableProp<Configuration, Module, 'module'>('module', { rules: [] })
-export const target = Lens.fromNullableProp<Configuration, Targets, 'target'>('target', 'web')
-export const mode = Lens.fromNullableProp<Configuration, Modes, 'mode'>('mode', 'development')
-export const devTool = Lens.fromNullableProp<Configuration, DevTool, 'devtool'>('devtool', 'cheap-eval-source-map')
+export const configurationT = Lens.fromNullableProp<Configuration>()
+export const resolveT = Lens.fromNullableProp<Resolve>()
 
-export const externals = Lens.fromNullableProp<Configuration, Externals, 'externals'>('externals', {})
-export const output = Lens.fromNullableProp<Configuration, Output, 'output'>('output', {})
-export const resolve = Lens.fromNullableProp<Configuration, Resolve, 'resolve'>('resolve', {})
-export const entry = Lens.fromNullableProp<Configuration, Entry, 'entry'>('entry', {})
-export const optimization = Lens.fromNullableProp<Configuration, Optimization, 'optimization'>('optimization', {})
+export const module = configurationT<Module, 'module'>('module', { rules: [] })
+export const target = configurationT<Targets, 'target'>('target', 'web')
+export const mode = configurationT<Modes, 'mode'>('mode', 'development')
+export const devTool = configurationT<DevTool, 'devtool'>('devtool', 'cheap-eval-source-map')
 
-export const alias = Lens.fromNullableProp<Resolve, Alias, 'alias'>('alias', {})
-export const extensions = Lens.fromNullableProp<Resolve, Extensions, 'extensions'>('extensions', [])
-export const mainFields = Lens.fromNullableProp<Resolve, MainFields, 'mainFields'>('mainFields', [])
+export const externals = configurationT<Externals, 'externals'>('externals', {})
+export const output = configurationT<Output, 'output'>('output', {})
+export const entry = configurationT<Entry, 'entry'>('entry', {})
+export const optimization = configurationT<Optimization, 'optimization'>('optimization', {})
 
-export const devServer = Lens.fromNullableProp<Configuration, DevServerConfiguration, 'devServer'>('devServer', {})
-export const plugins = Lens.fromNullableProp<Configuration, Plugin[], 'plugins'>('plugins', [])
+export const resolve = configurationT<Resolve, 'resolve'>('resolve', {})
+export const alias = resolveT<Alias, 'alias'>('alias', {})
+export const extensions = resolveT<Extensions, 'extensions'>('extensions', [])
+export const mainFields = resolveT<MainFields, 'mainFields'>('mainFields', [])
+
+export const devServer = configurationT<DevServerConfiguration, 'devServer'>('devServer', {})
+export const plugins = configurationT<Plugin[], 'plugins'>('plugins', [])
 export const rules = Lens.fromNullableProp<Module, Rules, 'rules'>('rules', [])
 
 // shorthands
