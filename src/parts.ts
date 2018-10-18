@@ -84,7 +84,7 @@ export const getMode = mode
 export const attachDevServer: ConfigDefinition = asks(env => ({
   contentBase: env.dist,
   historyApiFallback: true,
-  publicPath: env.publicPath,
+  publicPath: env.publicPath || env.dist,
   compress: true,
   hotOnly: true,
   port: env.port,
