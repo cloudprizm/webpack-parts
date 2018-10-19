@@ -59,6 +59,13 @@ export const devServer = configurationT<DevServerConfiguration, 'devServer'>('de
 export const plugins = configurationT<Plugin[], 'plugins'>('plugins', [])
 export const rules = Lens.fromNullableProp<Module, Rules, 'rules'>('rules', [])
 
+export const devServerT = Lens.fromNullableProp<DevServerConfiguration>()
+export const devServerPort = devServerT<number, 'port'>('port', 8080)
+export const devServerHost = devServerT<string, 'host'>('host', 'localhost')
+
+export const withDevServerPort = devServer.compose(devServerPort)
+export const withDevServerHost = devServer.compose(devServerHost)
+
 // shorthands
 // modifiers
 export const withRules = module.compose(rules)
