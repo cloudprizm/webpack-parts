@@ -19,24 +19,6 @@ Type and null safe, composable, webpack config for typescript.
       .run(myEnvironment)
 ```
 
-#### More advance shape
-```typescript
-const chainableDefaults: ChainableConfigDefinition = config =>
-  reader
-    .of({ ...config })
-    .map(umdOutput)
-    .map(setExtensions)
-    .map(setMainFields)
-    .ap(setDevTool.map(withDevTool.set))
-    .ap(setWebpackMode.map(withMode.set))
-    .ap(sassRules.map(applyRuleAtTheEnd))
-    .ap(codeRules.map(applyRuleAtTheEnd))
-    .ap(outputEnv.map(partialOutput =>
-      withOutput.modify(output => ({ ...output, ...partialOutput }))))
-    .ap(pluginsBundle.map(applyPluginAtTheEnd))
-    .chain(graphqlRule)
-```
-
 #### Extending `UserConfig` with type interference
 ```typescript
 interface MyCustomConfig extends UserConfig {
@@ -64,6 +46,34 @@ const setDevTool: ConfigPart<DevTool> = asks(userConfig =>
 const configFactory = myConfig
   .ap(setDevTool.map(withDevTool.set)) // read (ask) and write (lens)
 ```
+
+#### With `webpack dev server`
+```typescript
+  configSomehow()
+    .ap(attachDevServer.map(devServer.set))
+    .run(myEnvironment)
+```
+
+#### More advance shape
+This is not part of library, this is only example of composition.
+
+```typescript
+const chainableDefaults: ChainableConfigDefinition = config =>
+  reader
+    .of({ ...config })
+    .map(umdOutput)
+    .map(setExtensions)
+    .map(setMainFields)
+    .ap(setDevTool.map(withDevTool.set))
+    .ap(setWebpackMode.map(withMode.set))
+    .ap(sassRules.map(applyRuleAtTheEnd))
+    .ap(codeRules.map(applyRuleAtTheEnd))
+    .ap(outputEnv.map(partialOutput =>
+      withOutput.modify(output => ({ ...output, ...partialOutput }))))
+    .ap(pluginsBundle.map(applyPluginAtTheEnd))
+    .chain(graphqlRule)
+```
+
 
 ## How to use it
 It is used in conjunction with [`@hungry/webpack-parallel`](https://github.com/hungry-consulting/webpack-parallel) - dev friendly builder and watcher for webpack.
