@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`adding hmr scripts to entry 1`] = `
+Array [
+  "/Users/damianbaar/work/catch-the-sun/node_modules/webpack-dev-server/client/index.js?http://localhost:9999",
+  "/Users/damianbaar/work/catch-the-sun/node_modules/webpack/hot/dev-server.js",
+  "./src/some-entrypoint",
+]
+`;

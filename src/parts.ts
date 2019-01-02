@@ -25,6 +25,9 @@ export interface UserConfig {
   externals: Externals
   target: Targets,
   env: Modes
+  hmr: boolean
+  host: string
+  standalone: boolean
   dist: string
   port: number
   publicPath: string
@@ -89,11 +92,22 @@ export const withMainFields = resolve.compose(mainFields)
 export const getMode = mode
 
 export const attachDevServer: ConfigDefinition = asks(env => ({
-  contentBase: env.dist,
   historyApiFallback: true,
-  publicPath: env.publicPath || env.dist,
+  contentBase: env.dist,
+  publicPath: env.publicPath,
+  host: env.host || 'localhost',
   compress: true,
-  hotOnly: true,
+  inline: env.hmr,
+  hot: env.hmr,
+  stats: {
+    assets: false,
+    colors: true,
+    version: false,
+    hash: false,
+    timings: false,
+    chunks: false,
+    chunkModules: false
+  },
   port: env.port,
   watchOptions: {
     poll: true
@@ -108,6 +122,7 @@ export const isProduction: CheckUserConfig = (userConfig) => userConfig.env === 
 export const isDevelopment: CheckUserConfig = (userConfig) => userConfig.env === 'development'
 export const isWeb: CheckUserConfig = (userConfig) => userConfig.target === 'web'
 export const isNode: CheckUserConfig = (userConfig) => userConfig.target === 'node'
+export const isStandalone: CheckUserConfig = (userConfig) => userConfig.standalone === true
 
 export { RuleSetRule, RuleSetLoader, Plugin, Module } from 'webpack'
 

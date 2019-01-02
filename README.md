@@ -35,6 +35,16 @@ const myConfig =
     .run(myEnvironment)
 ```
 
+* or with module module augmentation feature - benefit is that, there is no need to pass extra parameter
+```typescript
+declare module '@hungry/webpack-parts' {
+  interface UserConfig {
+    yourCustomConfigInterface: MyExtraConfig
+  }
+}
+```
+[You can find babel example within loaders.](src/loaders/types.ts)
+
 #### Asking for UserConfig when chaining
 ```typescript
 const setDevTool: ConfigPart<DevTool> = asks(userConfig =>
@@ -54,8 +64,23 @@ const configFactory = myConfig
     .run(myEnvironment)
 ```
 
+#### Working with HMR
+* there is a helper which adding all needed hmr scripts based upon env to run, `addHMRScripts`
+```typescript
+  myConfig.chain(config =>
+    asks(({ hmr, env }) => withEntry.set(({
+      main: hmr && (env === 'development' || env === 'none')
+        ? addHMRScripts(getFileInSRCFolder('index.browser.tsx'), config)
+        : getFileInSRCFolder('index.browser.tsx'),
+      static: getFileInSRCFolder('index.ssr.tsx'),
+    }))(config))
+```
+* why?
+when running `webpack-dev-server` with `hot` it assumes that all entry points needs to be compiled with `hmr` and it is causing some issues during `ssr` rendering.
+I like this approach better since it is clear to which entry point extra code will be added.
+
 #### More advance shape
-This is not part of library, this is only example of composition.
+You can find a more advance example within [`src/factory.ts`]('src/factory.ts') file.
 
 ```typescript
 const chainableDefaults: ChainableConfigDefinition = config =>
