@@ -7,8 +7,6 @@ const node_modules = path.resolve(rootDir, 'node_modules')
 const packageJSON = path.resolve(projectDir, 'package.json')
 const projectSrc = path.resolve(projectDir, 'src')
 
-export const version = require(packageJSON).version
-
 export const paths = {
   project: projectDir,
   packageJSON,
