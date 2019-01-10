@@ -1,6 +1,8 @@
 # Webpack parts
 Type and null safe, composable, webpack config for typescript.
 
+[Docs](https://hungry-consulting.github.io/webpack-parts/index.html)
+
 ## Example
 #### Basic shape
 ```typescript

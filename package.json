@@ -31,6 +31,7 @@
     "build:code": "babel src -d dist --extensions '.ts','.tsx'",
     "watch": "concurrently 'yarn build:declarations --watch' 'yarn build:code --watch'",
     "build": "concurrently 'yarn build:declarations' 'yarn build:code'",
+    "docs": "typedoc --out docs ./src/**",
     "prepublish": "yarn build"
   },
   "publishConfig": {
@@ -58,7 +59,12 @@
     "@hungry/babel-preset-cli": "^0.1.1",
     "@types/find-up": "^2.1.1",
     "concurrently": "^4.0.1",
-    "typescript": "^3.2.1"
+    "typescript": "^3.2.1",
+    "@types/jest": "^23.3.12",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "typedoc": "^0.14.0"
   },
   "peerDependencies": {
     "babel-core": "7.0.0-bridge.0",

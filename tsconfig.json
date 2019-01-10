@@ -25,5 +25,20 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typedocOptions": {
+    "out": "docs",
+    "mode": "modules",
+    "composite": true,
+    "ignoreCompilerErrors": true,
+    "excludePrivate": true,
+    "excludeNotExported": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "disableOutputCheck": true,
+    "preserveConstEnums": true,
+    "stripInternal": true,
+    "suppressExcessPropertyErrors": true,
+    "suppressImplicitAnyIndexErrors": true
+  }
 }
