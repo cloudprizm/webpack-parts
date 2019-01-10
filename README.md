@@ -99,7 +99,6 @@ const chainableDefaults: ChainableConfigDefinition = config =>
     .chain(graphqlRule)
 ```
 
-
 ## How to use it
 It is used in conjunction with [`@hungry/webpack-parallel`](https://github.com/hungry-consulting/webpack-parallel) - dev friendly builder and watcher for webpack.
 

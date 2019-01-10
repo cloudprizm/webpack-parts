@@ -63,7 +63,14 @@
   "peerDependencies": {
     "babel-core": "7.0.0-bridge.0",
     "webpack": "^4.0.0",
-    "webpack-dev-server": "^3.0.0"
+    "webpack-dev-server": "^3.0.0",
+    "node-sass": "^4.11.0",
+    "babel-loader": "^8.0.5",
+    "sass-loader": "^7.1.0",
+    "typings-for-css-modules-loader": "^1.7.0",
+    "css-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.3"
   },
   "bugs": {
     "url": "https://github.com/hungry-consulting/webpack-parallel/issues",
