@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/hungry-consulting/webpack-parts
 	branch = master
-	commit = 3efcbda9c0252f785ab4b64a3aa2cde0ed803f93
-	parent = 6316ac71d0fdb700387fcbd69fdc7576823e23a4
+	commit = ae05e2921b1ccc3e0ec9e5a8f59a54fccb7959e0
+	parent = e803744a577f1330ed46392163f8014613bf4d34
 	cmdver = 0.4.0
 	method = merge
